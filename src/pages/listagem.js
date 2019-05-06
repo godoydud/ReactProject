@@ -5,6 +5,7 @@ import api from '../services/api';
 import { View, Text, TouchableOpacity, StyleSheet, Alert, Button, TextInput } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
+
 export default class Main extends Component {
     static navigationOptions = {
         title: "Meu Estacionamento"
@@ -19,6 +20,12 @@ export default class Main extends Component {
 
     componentDidMount() { 
         this.loadProducts();
+    }
+
+    loadClientes = async () => {
+        const response = await api.get('/cliente');
+
+        this.setState({ docs: response.data})
     }
 
     loadProducts = async (page = 1) => {
@@ -50,45 +57,24 @@ export default class Main extends Component {
             <Text style={styles.placeholder}>Placa do Veículo:</Text>
             <Text style={styles.clientePlaca}>{item.placa}</Text>
             <Text style={styles.placeholder}>ID Cliente:</Text>  
-            <Text style={styles.clientePlaca}>{item._id}</Text>
+            <Text style={styles.clientePlaca}>{item._id}</Text> 
+         
            
-                        
-            <Text style={styles.remover}>Remoção de usuários</Text>
-
 
  
-             <TouchableOpacity style={styles.productButton} onPress={this.handleDelete}>
-               <Text style={styles.productButtonText}>Excluir</Text> 
+             <TouchableOpacity style={styles.productButton} 
+             onPress={() => {
+                api.delete(`/cliente/${item._id}`)
+                }}> 
+             
+             
+             <Text style={styles.productButtonText}>Deletar</Text>
+               
              </TouchableOpacity> 
         </View>
     )
  
-    handleDelete = () => {
-        Alert.alert(
-            'Remover Cliente',
-            'Tem certeza que deseja remover o cliente?',
-            [
-                {
-                    tex: 'Não',
-                    onPress: () => console.log('Cancel Pressed'),
-                    style: 'cancel',
-                },
-                {
-                    text: 'OK', onPress: async () => {
-                        api.delete(`/service/${this.state.docs._id}`)
- 
-                        this.handleDeletedService()
-                    }
-                },
-            ],
-            { cancelable: false},
-        )
-    }
 
-        handleDeletedService = () => {
-            this.props.navigate('Main') 
-        }
-   
 
     render() {
         return(

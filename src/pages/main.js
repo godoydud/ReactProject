@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet, View, Image} from 'react-native';
 
 
 
@@ -7,7 +7,8 @@ export default class Main extends Component {
     render() {
         return (
             <View> 
-                        <TouchableOpacity style={styles.productButton}>
+                <Image style={styles.logo} source={require('../images/logo.png')}></Image>
+                       <TouchableOpacity style={styles.productButton}>
                             <Text style={styles.productButtonText} onPress={() => {
                                 this.props.navigation.navigate('Cadastro')    
                             }} >Cadastrar Cliente</Text>
@@ -16,22 +17,22 @@ export default class Main extends Component {
                         <TouchableOpacity style={styles.productButton}>
                             <Text style={styles.productButtonText} onPress={() => {
                                 this.props.navigation.navigate('Listagem')     
-                            }} >Lista de Cadastros</Text>
-                        </TouchableOpacity>
+                            }} >Lista de Cadastros</Text>  
+                        </TouchableOpacity> 
                     </View> 
         )
     }
 }
  
-
+  
 const styles = StyleSheet.create({
  
     productButton: { 
-        margin: 60, 
+        margin: 20, 
         height: 42, 
         borderRadius: 5,
         borderWidth: 2,
-        borderColor: "#DA552F",
+        borderColor: "#088A08",
         backgroundColor: "transparent" ,
         justifyContent: "center",
         alignItems: "center",
@@ -40,7 +41,12 @@ const styles = StyleSheet.create({
 
     productButtonText: {
         fontSize: 16,
-        color: "#DA552F",
+        color: "#088A08",
         fontWeight: "bold"
+    },
+
+    logo: {
+    margin: 102
     }
+    
 }); 

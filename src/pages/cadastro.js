@@ -7,6 +7,9 @@ import {
 import api from '../services/api'
 
 export default class Cadastro extends Component {
+    static navigationOptions = { 
+        title: "Cadastro de Cliente"  
+    };
 
     state = {
         nome: "",
@@ -49,12 +52,12 @@ export default class Cadastro extends Component {
                                     cpf: this.state.cpf,
                                     placa: this.state.placa
                                     
-                                })
+                                }) 
                                 alert('Cadastrado com Sucesso')
 
                             }}
                                 title="Cadastrar"
-                                color='#ADD8E6' />
+                                color='#088A08' />
                             
                         </TouchableOpacity>
                     </View>

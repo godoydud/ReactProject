@@ -6,6 +6,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert, Button, TextInput } fr
 import { FlatList } from 'react-native-gesture-handler';
 
 
+
 export default class Main extends Component {
     static navigationOptions = {
         title: "Meu Estacionamento "
@@ -52,25 +53,46 @@ export default class Main extends Component {
     renderItem = ({item}) => (
         <View style={styles.productContainer}>
             <Text style={styles.clienteNome}>{item.nome}</Text>
-            <Text style={styles.placeholder}>CPF:</Text>
+            <Text style={styles.placeholder}>CPF:</Text> 
             <Text style={styles.clienteCpf}>{item.cpf}</Text> 
             <Text style={styles.placeholder}>Placa do Veículo:</Text>
             <Text style={styles.clientePlaca}>{item.placa}</Text>
             <Text style={styles.placeholder}>ID Cliente:</Text>  
-            <Text style={styles.clientePlaca}>{item._id}</Text> 
+            <Text style={styles.clientePlaca}>{item._id}</Text>  
          
-           
-
- 
-             <TouchableOpacity style={styles.productButton} 
-             onPress={() => {
-                api.delete(`/cliente/${item._id}`)
-                }}> 
-             
-             
-             <Text style={styles.productButtonText}>Deletar</Text>
-               
-             </TouchableOpacity> 
+            <TouchableOpacity style={styles.productButton} onPress= { () => {
+                    Alert.alert(
+                        'Deletar',
+                        'Deseja realmente deletar?',
+                        [
+                            {
+                                text: 'Não', onPress: () => 
+                                    console.log('Cancel'),
+                                    style: 'cancel'
+                                    
+                                },
+                                {
+                                    text: 'Sim', onPress: () => {
+                                        api.delete(`/cliente/${item._id}`)
+                                        .then(res => {
+                                            this.loadProducts();
+                                            Alert.alert(
+                                                'Pronto', 
+                                                'Item deletado com sucesso'
+                                            )
+                                        })
+                                        .catch(err => {
+                                            'Erro',
+                                            'Não foi possível deletar'
+                                        })
+                                    }
+                                }
+                            
+                        ]
+                    )
+                }} style={styles.productButton}>
+                    <Text style={styles.productButtonText}>Deletar</Text>
+                </TouchableOpacity>
         </View>
     )
  

@@ -8,7 +8,7 @@ import { FlatList } from 'react-native-gesture-handler';
 
 export default class Main extends Component {
     static navigationOptions = {
-        title: "Meu Estacionamento"
+        title: "Meu Estacionamento "
     };
 
     state = {

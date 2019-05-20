@@ -57,8 +57,7 @@ export default class Main extends Component {
             <Text style={styles.clienteCpf}>{item.cpf}</Text> 
             <Text style={styles.placeholder}>Placa do Veículo:</Text>
             <Text style={styles.clientePlaca}>{item.placa}</Text>
-            <Text style={styles.placeholder}>ID Cliente:</Text>  
-            <Text style={styles.clientePlaca}>{item._id}</Text>  
+
          
             <TouchableOpacity style={styles.productButton} onPress= { () => {
                     Alert.alert(
@@ -85,6 +84,7 @@ export default class Main extends Component {
                                             'Erro',
                                             'Não foi possível deletar'
                                         })
+                                        this.props.navigation.navigate('Main')
                                     }
                                 }
                             

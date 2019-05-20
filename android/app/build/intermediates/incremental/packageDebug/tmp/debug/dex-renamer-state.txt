@@ -1,0 +1,4 @@
+#Mon May 06 13:17:27 AMT 2019
+base.0=C\:\\Users\\dougl\\Desktop\\Godoy\\ReactProject\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex

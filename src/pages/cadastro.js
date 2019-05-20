@@ -54,7 +54,7 @@ export default class Cadastro extends Component {
                                     
                                 }) 
                                 alert('Cadastrado com Sucesso')
-
+                                this.props.navigation.navigate("Main")
                             }}
                                 title="Cadastrar"
                                 color='#088A08' />
